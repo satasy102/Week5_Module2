@@ -49,4 +49,9 @@ public abstract class ObjectPool<T> {
         locked.put(t, now);
         return (t);
     }
+
+    public synchronized void checkIn(T t) {
+        locked.remove(t);
+        unlocked.put(t, System.currentTimeMillis());
+    }
 }
